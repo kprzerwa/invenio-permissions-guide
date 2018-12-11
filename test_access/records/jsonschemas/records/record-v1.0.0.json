@@ -80,7 +80,44 @@
         "required": [
           "name"
         ]
-
+      }
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "title": "Read"
+      }
+    },
+    "_access": {
+      "type": "object",
+      "properties": {
+        "public": {
+          "type": "boolean",
+          "title": "Public",
+          "default": "True"
+        },
+        "read": {
+          "items": {
+            "type": "string",
+            "title": "Read"
+          },
+          "type": "array"
+        },
+        "update": {
+          "items": {
+            "type": "string",
+            "title": "Update"
+          },
+          "type": "array"
+        },
+        "delete": {
+          "items": {
+            "type": "string",
+            "title": "Delete"
+          },
+          "type": "array"
+        }
       }
     }
   },
