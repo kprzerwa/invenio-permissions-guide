@@ -14,4 +14,4 @@ class MyRecordSchemaV1(Schema):
     """Internal Location schema."""
 
     pid = PersistentIdentifier()
-    _access = fields.Dict()
+    owners = fields.List(fields.Int())

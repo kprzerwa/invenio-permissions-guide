@@ -11,12 +11,10 @@ from __future__ import absolute_import, print_function
 
 from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
-from invenio_records_rest.utils import allow_all, check_elasticsearch
-from invenio_search import RecordsSearch
+from invenio_records_rest.utils import allow_all
 
 from test_access.records.api import MyRecord
-from test_access.records.permissions import record_read_permission_factory, \
-    record_update_permission_factory, record_delete_permission_factory
+from test_access.records.permissions import record_read_permission_factory
 from test_access.records.search import MyRecordSearch
 
 
@@ -61,9 +59,9 @@ RECORDS_REST_ENDPOINTS = dict(
         # TODO: Redefine these permissions to cover your auth needs
         create_permission_factory_imp=allow_all,
         read_permission_factory_imp=record_read_permission_factory,
-        update_permission_factory_imp=record_update_permission_factory,
-        delete_permission_factory_imp=record_delete_permission_factory,
-        list_permission_factory_imp=record_read_permission_factory
+        update_permission_factory_imp=allow_all,
+        delete_permission_factory_imp=allow_all,
+        list_permission_factory_imp=allow_all
     ),
 )
 """REST API for test-access."""

@@ -1,5 +1,5 @@
 from elasticsearch_dsl import Q
-from flask_login import current_user
+from flask import g
 from flask_principal import Permission
 from invenio_access import superuser_access
 from invenio_search import RecordsSearch
@@ -26,20 +26,14 @@ def search_permission_filter():
 
     provides = get_user_provides()
 
-    # Filter for public records
-    public = Q('missing', field='_access.read')
     # Filter for restricted records, that the user has access to
-    read_restricted = Q('terms', **{'_access.read': provides})
-    write_restricted = Q('terms', **{'_access.update': provides})
+    read_restricted = Q('terms', **{'owners': provides})
 
-    # OR all the filters
-    combined_filter = public | read_restricted | write_restricted
-
-    return Q('bool', filter=[combined_filter])
+    return Q('bool', filter=[read_restricted])
 
 
 class MyRecordSearch(RecordsSearch):
-    """CERN search class."""
+    """My Record search class."""
 
     class Meta:
         """Configuration for CERN search."""

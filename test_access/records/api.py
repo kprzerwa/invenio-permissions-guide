@@ -10,6 +10,4 @@ class MyRecord(Record):
     @classmethod
     def create(cls, data, id_=None, **kwargs):
         """Create My custom record."""
-        data['owners'] = [getattr(current_user, 'id', -1)]
-        data.setdefault('_access', {})
         return super(MyRecord, cls).create(data, id_=id_, **kwargs)

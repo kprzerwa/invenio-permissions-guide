@@ -25,6 +25,9 @@
           "type": "date",
           "format": "date"
         },
+        "owners": {
+          "type": "keyword"
+        },
         "contributors": {
           "type": "object",
           "properties": {
